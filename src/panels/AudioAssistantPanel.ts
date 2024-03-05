@@ -2,6 +2,8 @@ import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vsco
 import { getUri } from "../utilities/getUri";
 import { getNonce } from "../utilities/getNonce";
 
+type CommandToFunctionMap = Record<string, (data: any) => void>;
+
 /**
  * This class manages the state and behavior of AudioAssistant webview panels.
  *
@@ -138,20 +140,58 @@ export class AudioAssistantPanel {
   private _setWebviewMessageListener(webview: Webview) {
     webview.onDidReceiveMessage(
       (message: any) => {
-        const command = message.command;
-        const text = message.text;
+        const { command, text } = message;
 
-        switch (command) {
-          case "spoke":
-            // Code that should run in response to the spoke command
-            window.showInformationMessage(text);
-            return;
-          // Add more switch case statements here as more webview message commands
-          // are created within the webview context (i.e. inside media/main.js)
-        }
+        const commandToFunctionMapping: CommandToFunctionMap = {
+          ["spoke"]: this._generateVscodeCommand,
+        };
+
+        commandToFunctionMapping[command](text);
       },
       undefined,
       this._disposables
     );
+  }
+
+  /**
+   * @TODO Pass the user's speech text into the LLM to generate vscode command to run
+   * @Spidel
+   */
+  private _generateVscodeCommand(text: string) {
+    // TODO: Generate this
+    const vscodeCommand = null;
+
+    // TODO: Pass in the generated command
+    this._runVscodeCommand("", {});
+  }
+
+  /**
+   * @TODO Runs a LLM-generated vscode command
+   * @Kintsoogi
+   * @Spidel
+   */
+  private _runVscodeCommand(command: string, data: any) {
+    const { storyNum, frameNum } = data;
+
+    const commandToFunctionMapping: CommandToFunctionMap = {
+      ["play"]: this._playObs,
+    };
+
+    commandToFunctionMapping[command](data);
+  }
+
+  /**
+   * @TODO Play an OBS audio file given story and frame number
+   * @Rich
+   */
+  private _playObs({ storyNum, frameNum }: { storyNum: number; frameNum: number }) {
+    // TODO: Get .mp3 data given storyNum and frameNum
+    console.log(storyNum, frameNum);
+
+    // TODO: Signal to webview to play mp3
+    this._panel.webview.postMessage({
+      command: "",
+      data: {},
+    });
   }
 }

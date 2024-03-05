@@ -2,11 +2,14 @@ import { vscode } from "./utilities/vscode";
 import "./App.css";
 
 function App() {
-  // TODO: Send text message of user speech to extension.js
+  /**
+   * @TODO Send text message of user speech to extension.js
+   * @Bruce.MCL
+   */
   function handleSpeechInput(command: string) {
     vscode.postMessage({
       command: "spoke",
-      text: `User spoke a command: ${command}`,
+      text: `User spoke: ${command}`,
     });
   }
 
