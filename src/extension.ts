@@ -8,15 +8,19 @@ export function activate(context: ExtensionContext) {
   const showAudioAssistantCommand = commands.registerCommand(
     "audio-obs-navigator.showAssistant",
     () => {
-      //* display webview
-      //* invoke STT
-      //* wait for "got-stop-recording"
-      //* got raw text
-      //* send raw text to miniParser / LLM
-      //* get back command
-      //* get mp3 file name
-      //* send to player
 
+      /* Workflow 
+       *   display webview
+       *   invoke STT
+       *   wait for "got-stop-recording"
+       *   got raw text
+       *   send raw text to miniParser / LLM
+       *   get back command
+       *   get mp3 file name
+       *   send to player
+       * Grammar
+       *   [ check | play ] [ story 1-50 ] [ frame 1-10 ]
+       */
       AudioAssistantPanel.render(context.extensionUri);
     }
   );
