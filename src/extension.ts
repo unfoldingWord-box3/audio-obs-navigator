@@ -1,11 +1,22 @@
-import { commands, ExtensionContext } from "vscode";
+//const vscode = require('vscode');  // The module 'vscode' contains the VS Code extensibility API
+import { window, commands, ExtensionContext } from 'vscode';
+//import { commands, ExtensionContext } from "vscode";//
 import { AudioAssistantPanel } from "./panels/AudioAssistantPanel";
 
 export function activate(context: ExtensionContext) {
   // Create the show audio assistant command
   const showAudioAssistantCommand = commands.registerCommand(
-    "audio-obs-naviator.showAssistant",
+    "audio-obs-navigator.showAssistant",
     () => {
+      //* display webview
+      //* invoke STT
+      //* wait for "got-stop-recording"
+      //* got raw text
+      //* send raw text to miniParser / LLM
+      //* get back command
+      //* get mp3 file name
+      //* send to player
+
       AudioAssistantPanel.render(context.extensionUri);
     }
   );
@@ -13,3 +24,9 @@ export function activate(context: ExtensionContext) {
   // Add command to the extension context
   context.subscriptions.push(showAudioAssistantCommand);
 }
+
+function myLog(con: string, txt: string) {
+  window.showInformationMessage(con);
+  console.log(con, txt);
+}
+

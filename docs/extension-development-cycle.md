@@ -9,7 +9,7 @@ Due to the fact that the `webview-ui` directory holds a self-contained React app
 
 ## UI development cycle
 
-Since we can take advantage of the much faster Vite dev server, it is encouraged to begin developing webview UI by running the `pnpm run start:webview` command and then editing the code in the `webview-ui/src` directory.
+Since we can take advantage of the much faster Vite dev server, it is encouraged to begin developing webview UI by running the `npm run start:webview` command and then editing the code in the `webview-ui/src` directory.
 
 _Tip: Open the command palette and run the `Simple Browser` command and fill in `http://localhost:3000/` when prompted. This will open a simple browser environment right inside VS Code._
 
@@ -21,7 +21,7 @@ This file contains a utility wrapper around the `acquireVsCodeApi()` function, w
 This utility also enables webview code to be run in the Vite dev server by using native web browser features that mock the functionality enabled by acquireVsCodeApi. This means you can keep building your webview UI with the Vite dev server even when using the VS Code API.
 
 ### Move to traditional extension development
-Once you're ready to start building other parts of your extension, simply shift to a development model where you run the `pnpm run build:webview` command as you make changes, press `F5` to compile your extension and open a new Extension Development Host window. Inside the host window, open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `OBS Audio Assistant: Show`.
+Once you're ready to start building other parts of your extension, simply shift to a development model where you run the `npm run build:webview` command as you make changes, press `F5` to compile your extension and open a new Extension Development Host window. Inside the host window, open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `OBS Audio Assistant: Show`.
 
 ## Dependency management and project configuration
 

@@ -16,6 +16,10 @@ function App() {
   return (
     <main>
       <h1>Audio OBS Navigator</h1>
+      <div className="recordBtns">
+        <i className="codicon codicon-mic"></i>
+        <i className="codicon codicon-stop"></i>
+      </div>
     </main>
   );
 }

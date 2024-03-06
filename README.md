@@ -19,10 +19,10 @@ For a deeper dive into how this sample works, read the guides below.
 cd audio-obs-navigator
 
 # Install dependencies for both the extension and webview UI source code
-pnpm run install:all
+npm run install:all
 
 # Build webview UI source code
-pnpm run build:webview
+npm run build:webview
 
 # Open sample in VS Code
 code .

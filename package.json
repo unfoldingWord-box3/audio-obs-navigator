@@ -10,19 +10,19 @@
   "contributes": {
     "commands": [
       {
-        "command": "audio-obs-naviator.showAssistant",
+        "command": "audio-obs-navigator.showAssistant",
         "title": "OBS Audio Assistant: Show"
       }
     ]
   },
   "scripts": {
-    "install:all": "pnpm install && cd webview-ui && pnpm install",
-    "start:webview": "cd webview-ui && pnpm run start",
-    "build:webview": "cd webview-ui && pnpm run build",
-    "vscode:prepublish": "pnpm run compile",
+    "install:all": "npm install && cd webview-ui && npm install",
+    "start:webview": "cd webview-ui && npm run start",
+    "build:webview": "cd webview-ui && npm run build",
+    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "pnpm run compile && pnpm run lint",
+    "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts"
   },
   "devDependencies": {

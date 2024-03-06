@@ -123,7 +123,7 @@ export class AudioAssistantPanel {
           <title>Audio Assistant</title>
         </head>
         <body>
-          <div id="root"></div>
+          <div id="root"> </div>
           <script type="module" nonce="${nonce}" src="${scriptUri}"></script>
         </body>
       </html>
