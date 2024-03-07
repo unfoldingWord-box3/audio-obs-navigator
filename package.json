@@ -12,6 +12,10 @@
       {
         "command": "audio-obs-navigator.showAssistant",
         "title": "OBS Audio Assistant: Show"
+      },
+      {
+        "command": "stt.dictate",
+        "title": "Speech to Text: Dictate"
       }
     ]
   },
@@ -20,8 +24,9 @@
     "start:webview": "cd webview-ui && npm run start",
     "build:webview": "cd webview-ui && npm run build",
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "compile": "npm run copyfiles && tsc -p ./tsconfig.client.json && tsc -p ./",
+    "watch": "npm run copyfiles && tsc -p ./tsconfig.client.json && tsc -watch -p ./",
+    "copyfiles": "node copy-files.js",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts"
   },
@@ -32,9 +37,12 @@
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
     "eslint": "^8.56.0",
+    "express": "^4.17.1",
     "glob": "^7.1.6",
+    "open": "^7.0.4",
     "prettier": "^2.2.1",
     "typescript": "^5.3.3",
-    "vscode-test": "^1.5.0"
+    "vscode-test": "^1.5.0",
+    "ws": "^7.4.6"
   }
 }
