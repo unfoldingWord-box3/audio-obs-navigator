@@ -51,7 +51,8 @@ chain = RetrievalQA.from_llm(
   retriever=retriever
 )
 
-def getCommand(query: str) -> str:
+def get_command_variant(query: str) -> str:
   return chain.run(query)
 
-print(getCommand(query=args.input))
+if __name__ == '__main__':
+  print(get_command_variant(query=args.input))

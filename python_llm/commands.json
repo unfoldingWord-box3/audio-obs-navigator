@@ -1,12 +1,15 @@
 [
   {
-    "command": "Play OBS",
+    "command": "PlayOBS",
     "description": "Navigate to and open a specific Open Bible Story or a specific frame within the story.",
     "variants": [
       "Open OBS",
       "Start playing OBS",
       "Go to story {story_number}",
       "Show me story {story_number}",
+      "Play story {story_number}",
+      "Open story {story_number}",
+      "Play story {story_number} frame {frame_number}",
       "Navigate to story {story_number} frame {frame_number}",
       "Go to frame {frame_number} in the current story",
       "Play the current story",
