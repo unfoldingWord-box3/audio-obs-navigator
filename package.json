@@ -20,8 +20,11 @@
     "start:webview": "cd webview-ui && npm run start",
     "build:webview": "cd webview-ui && npm run build",
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "compile": "npm run copyfiles && tsc -p ./tsconfig.client.json && tsc -p ./",
+    "compile2": "tsc -p ./tsconfig.client.json",
+    "compile3": "tsc -p ./",
+    "watch": "npm run copyfiles && tsc -p ./tsconfig.client.json && tsc -watch -p ./",
+    "copyfiles": "node copy-files.js",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts"
   },
@@ -36,5 +39,9 @@
     "prettier": "^2.2.1",
     "typescript": "^5.3.3",
     "vscode-test": "^1.5.0"
+  },
+  "dependencies": {
+    "express": "^4.18.3",
+    "ws": "^8.16.0"
   }
 }
