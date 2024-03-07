@@ -1,0 +1,102 @@
+[
+  {
+    "command": "Navigate to OBS",
+    "description": "Navigate to and open a specific Open Bible Story or a specific frame within the story.",
+    "variants": [
+      "Open story {story_number}",
+      "Go to story {story_number} frame {frame_number}",
+      "Navigate to the current story",
+      "Take me to the next story",
+      "Show the previous story",
+      "Display frame {frame_number} from the current story",
+      "Advance to the next frame in the story",
+      "Go back to the previous frame in this story"
+    ]
+  },
+  {
+    "command": "Check Culture in Single OBS",
+    "description": "Check the cultural context in a single Open Bible Story.",
+    "variants": [
+      "Analyze cultural context in story {story_number}",
+      "Check assumptions in the current story",
+      "Examine implicit information in the next story",
+      "Investigate how names are translated in the previous story",
+      "Explore cultural aspects in story {story_number}",
+      "Review cultural background in the current frame",
+      "Analyze cultural context in current story",
+      "Check cultural assumptions in next story",
+      "Examine cultural implicit information in previous story"
+    ]
+  },
+  {
+    "command": "Check Figures of Speech in Single OBS",
+    "description": "Check for figures of speech in a single Open Bible Story.",
+    "variants": [
+      "Identify figures of speech in story {story_number}",
+      "Check for metaphors in the current story",
+      "Find hyperboles in the next story",
+      "Analyze ellipsis in the previous story",
+      "Look for metonymy in story {story_number}",
+      "Search for personification in the current story",
+      "Detect synecdoche in the next frame",
+      "Examine doublets in the previous frame",
+      "Identify figures of speech in current story",
+      "Check for metaphors in next story",
+      "Find hyperboles in previous story"
+    ]
+  },
+  {
+    "command": "Check Grammar in Single OBS",
+    "description": "Check the grammar elements in a single Open Bible Story.",
+    "variants": [
+      "Analyze abstract nouns in story {story_number}",
+      "Check contrast relationships in the current story",
+      "Examine cause and effect in the next story",
+      "Investigate active or passive voice in the previous story",
+      "Explore goal relationships in story {story_number}",
+      "Review inclusive language in the current frame",
+      "Assess hypothetical situations in the next frame",
+      "Analyze abstract nouns in current story",
+      "Check contrast relationships in next story",
+      "Examine cause and effect in previous story"
+    ]
+  },
+  {
+    "command": "Check Culture Across All OBS",
+    "description": "Check the cultural context across all Open Bible Stories.",
+    "variants": [
+      "Analyze cultural contexts across all stories",
+      "Check assumptions across the OBS series",
+      "Examine implicit information in all stories",
+      "Investigate name translations in every story",
+      "Analyze cultural aspects in all OBS"
+    ]
+  },
+  {
+    "command": "Check Figures of Speech Across All OBS",
+    "description": "Check for figures of speech across all Open Bible Stories.",
+    "variants": [
+      "Identify all figures of speech across stories",
+      "Check for all metaphors in Open Bible Stories",
+      "Find all hyperboles across the OBS series",
+      "Analyze all ellipsis in the stories",
+      "Look for metonymy in each OBS",
+      "Search for personification throughout OBS",
+      "Detect synecdoche in the entire OBS collection",
+      "Examine doublets across all stories"
+    ]
+  },
+  {
+    "command": "Check Grammar Across All OBS",
+    "description": "Check the grammar elements across all Open Bible Stories.",
+    "variants": [
+      "Analyze grammar across all stories",
+      "Check for abstract nouns in all stories",
+      "Examine contrast relationships across the OBS series",
+      "Investigate active or passive voice in every story",
+      "Explore goal relationships in all OBS",
+      "Review inclusive language throughout OBS",
+      "Assess hypothetical situations in the entire OBS collection"
+    ]
+  }
+]
