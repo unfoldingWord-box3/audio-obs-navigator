@@ -1,31 +1,37 @@
 [
   {
-    "command": "Navigate to OBS",
+    "command": "Play OBS",
     "description": "Navigate to and open a specific Open Bible Story or a specific frame within the story.",
     "variants": [
-      "Open story {story_number}",
-      "Go to story {story_number} frame {frame_number}",
-      "Navigate to the current story",
-      "Take me to the next story",
-      "Show the previous story",
-      "Display frame {frame_number} from the current story",
-      "Advance to the next frame in the story",
-      "Go back to the previous frame in this story"
+      "Open OBS",
+      "Start playing OBS",
+      "Go to story {story_number}",
+      "Show me story {story_number}",
+      "Navigate to story {story_number} frame {frame_number}",
+      "Go to frame {frame_number} in the current story",
+      "Play the current story",
+      "Move to the next story",
+      "Return to the previous story",
+      "Continue with the next frame in the current story",
+      "Go back to the previous frame in the current story"
     ]
   },
   {
     "command": "Check Culture in Single OBS",
     "description": "Check the cultural context in a single Open Bible Story.",
     "variants": [
-      "Analyze cultural context in story {story_number}",
-      "Check assumptions in the current story",
-      "Examine implicit information in the next story",
-      "Investigate how names are translated in the previous story",
-      "Explore cultural aspects in story {story_number}",
-      "Review cultural background in the current frame",
-      "Analyze cultural context in current story",
-      "Check cultural assumptions in next story",
-      "Examine cultural implicit information in previous story"
+      "Show cultural context for story {story_number}",
+      "Detail cultural background in story {story_number}",
+      "Cultural insights for the current story",
+      "Explore cultural details in story {story_number}",
+      "What's the cultural context of story {story_number}?",
+      "Uncover cultural aspects of the current story",
+      "Cultural review for story {story_number}",
+      "Investigate cultural elements in story {story_number}",
+      "Explain culture in the current story",
+      "Discover cultural nuances in story {story_number}",
+      "Analyze culture in the next story",
+      "Review cultural information in the previous story"
     ]
   },
   {

@@ -5,10 +5,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--input", default="Open OBS story 9 frame 4")
-args = parser.parse_args()
-
 embeddings = OpenAIEmbeddings()
 
 loader = JSONLoader(

@@ -32,7 +32,7 @@ retriever = RedundantFilterRetriever(
 )
 
 system_template = """Open Bible stories consist of 50 stories and x number of frames per story.
-Sometimes frames are called images or sections.
+When you rephrase the request, convert english numbers to actual numbers, without suffixes like "nd, rd, etc".
 If no story_number or frame_number is specified, assume all stories
 Given a user's request, use one of the items from the following context to rephrase it as a command. 
 Do NOT add anything besides an item from the context. Return the item you select ONLY!
@@ -51,6 +51,7 @@ chain = RetrievalQA.from_llm(
   retriever=retriever
 )
 
-result = chain.run(args.input)
+def getCommand(query: str) -> str:
+  return chain.run(query)
 
-print(result)
+print(getCommand(query=args.input))
