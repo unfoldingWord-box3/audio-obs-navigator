@@ -188,10 +188,15 @@ export class AudioAssistantPanel {
     // TODO: Get .mp3 data given storyNum and frameNum
     console.log(storyNum, frameNum);
 
+    const lang = "en/en";
+    const domain = "https://cdn.door43.org/obs/mp3/1/";
+    const scope = ("0" + storyNum).slice(-2) + "_" + ("0" + frameNum).slice(-2);
+    const url = domain + lang + "_obs_" + scope + "_128kbps.mp3";
+
     // TODO: Signal to webview to play mp3
     this._panel.webview.postMessage({
-      command: "",
-      data: {},
+      command: "play",
+      data: { "url": url }
     });
   }
 }
