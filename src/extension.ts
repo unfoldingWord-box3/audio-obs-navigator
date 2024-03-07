@@ -2,6 +2,7 @@
 import {
   ExtensionContext,
   commands,
+  env,
   Position,
   Uri,
   window,
@@ -28,9 +29,20 @@ app.listen(port, () => {
   console.log(`[OBS Audio Assistant: Show] Server running at localhost:${port}`);
   window.showInformationMessage(`[OBS Audio Assistant: Show] Server running at localhost:${port}`);
 
-  console.log("open(`http://localhost:${port}`);");
+  const url = `http://localhost:${port}`;
+  console.log(`Opening: ${url}`);
   //   open(`http://localhost:${port}`);
-
+  env.openExternal(Uri.parse(url))
+    .then(success => {
+      if (success) {
+        console.log(`Successfully opened ${url}`);
+      } else {
+        console.error(`Failed to open ${url}`);
+      }
+    })
+    .catch(err => {
+      console.error(`Error opening ${url}: ${err.message}`);
+    });
 });
 
 export function activate(context: ExtensionContext) {
