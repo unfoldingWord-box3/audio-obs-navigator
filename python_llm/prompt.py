@@ -54,5 +54,5 @@ chain = RetrievalQA.from_llm(
 def get_command_variant(query: str) -> str:
   return chain.run(query)
 
-if __name__ == '__main__':
-  print(get_command_variant(query=args.input))
+# if __name__ == '__main__':
+#   print(get_command_variant(query=args.input))

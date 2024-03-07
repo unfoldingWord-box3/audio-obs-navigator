@@ -27,22 +27,22 @@ def extract_story_and_frame(variant: str):
     return {"story_number": story_number, "frame_number": frame_number}
 
 
-if __name__ == "__main__":
-  # Testing the function with your provided variants
-  variants = [
-      "Open OBS",
-      "Start playing OBS",
-      "Go to story 3",
-      "Show me story 5",
-      "Navigate to story 7 frame 2",
-      "Go to frame 4 in the current story",
-      "Play the current story",
-      "Move to the next story",
-      "Return to the previous story",
-      "Continue with the next frame in the current story",
-      "Go back to the previous frame in the current story"
-  ]
+# if __name__ == "__main__":
+#   # Testing the function with your provided variants
+#   variants = [
+#       "Open OBS",
+#       "Start playing OBS",
+#       "Go to story 3",
+#       "Show me story 5",
+#       "Navigate to story 7 frame 2",
+#       "Go to frame 4 in the current story",
+#       "Play the current story",
+#       "Move to the next story",
+#       "Return to the previous story",
+#       "Continue with the next frame in the current story",
+#       "Go back to the previous frame in the current story"
+#   ]
 
-  for variant in variants:
-      result = extract_story_and_frame(variant)
-      print(f"Variant: '{variant}' => Story: {result['story_number']}, Frame: {result['frame_number']}")
+#   for variant in variants:
+#       result = extract_story_and_frame(variant)
+#       print(f"Variant: '{variant}' => Story: {result['story_number']}, Frame: {result['frame_number']}")
