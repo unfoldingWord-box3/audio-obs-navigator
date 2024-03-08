@@ -190,7 +190,7 @@ export class AudioAssistantPanel {
 
     const lang = "en/en";
     const domain = "https://cdn.door43.org/obs/mp3/1/";
-    const scope = ("0" + storyNum).slice(-2) + "_" + ("0" + frameNum).slice(-2);
+    const scope = digits(storyNum) + "_" + digits(frameNum);
     const url = domain + lang + "_obs_" + scope + "_128kbps.mp3";
 
     // TODO: Signal to webview to play mp3
@@ -199,4 +199,24 @@ export class AudioAssistantPanel {
       data: { "url": url }
     });
   }
+}
+
+function digits(inp) {
+  let out = "";
+
+  switch (inp) {
+    case "one": out = "01"; break;
+    case "two": out = "02"; break;
+    case "three": out = "03"; break;
+    case "four": out = "04"; break;
+    case "five": out = "05"; break;
+    case "six": out = "06"; break;
+    case "seven": out = "07"; break;
+    case "eight": out = "08"; break;
+    case "nine": out = "09"; break;
+    default:
+      out = inp;
+  }
+
+  return out;
 }
