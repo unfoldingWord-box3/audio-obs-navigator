@@ -3,11 +3,15 @@ import {
   ExtensionContext,
   commands,
   env,
-  Position,
+  ShellExecution,
+  Task,
+  TaskDefinition,
+  TaskRevealKind,
+  TaskScope,
+  tasks,
   Uri,
   window,
-  workspace,
-  WorkspaceEdit,
+  WorkspaceFolder,
 } from "vscode";
 import { COMMAND_MAPPINGS } from "./constant/command-mappings";
 import { AudioAssistantPanel } from "./panels/AudioAssistantPanel";
@@ -56,6 +60,72 @@ async function getVscodeCommandFromUserQuery(userQuery: string) {
   } catch (error) {
     return error;
   }
+}
+
+interface AudioCommandArgs {
+  /**
+   * The audio file to play.
+   */
+  file: string;
+}
+
+function playAudioFile(file: string) {
+  tasks.executeTask(createTask(
+    "audioPlayer",
+    "What the Beep?",
+    {
+      type: "audioPlayer",
+    },
+    TaskScope.Global,
+    file,
+  ));
+}
+
+function createTask(name: string, source: string, definition: TaskDefinition, scope: TaskScope | WorkspaceFolder, file: string): Task {
+  let pyFile: string = [
+    "from playsound import playsound",
+    "import os",
+    "import sys",
+    "",
+    "p = os.path.abspath(sys.argv[1])",
+    "if not os.path.isfile(p):",
+    "  # TODO: use problem matcher here?",
+    "  print('not a file')",
+    "  exit(0)",
+    "",
+    // See the following answer for why this logic is needed:
+    // https://stackoverflow.com/a/68937955/18162937
+    "if os.name == 'nt':",
+    "  p = p.replace('\\\\', '\\\\\\\\', 1)",
+    "",
+    "playsound(p)",
+  ].join("\n");
+
+  let nt = new Task(
+    // This must always be the *exact same* definition
+    // from the provided task object.
+    definition,
+    scope,
+    name,
+    source,
+    new ShellExecution(
+      "audio-player",
+      {
+        executable: "python",
+        shellArgs: [
+          "-c",
+          `"${pyFile}"`,
+          file,
+        ]
+      },
+    ),
+  );
+
+  nt.presentationOptions.reveal = TaskRevealKind.Never;
+  nt.presentationOptions.showReuseMessage = false;
+  nt.problemMatchers = [];
+
+  return nt;
 }
 
 export function activate(context: ExtensionContext) {
