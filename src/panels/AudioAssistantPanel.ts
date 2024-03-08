@@ -48,8 +48,8 @@ export class AudioAssistantPanel {
     this.playObs = ({ story_number, frame_number }) => {
       const lang = "en/en";
       const domain = "https://cdn.door43.org/obs/mp3/1/";
-      const scope = digits(story_number) + "_" + digits(frame_number);
-      const url = domain + lang + "_obs_" + scope + "_128kbps.mp3";
+      const scope = digits(story_number) + "-" + digits(frame_number);
+      const url = domain + lang + "-obs-v6/en_obs_" + scope + "_128kbps.mp3";
 
       this._panel.webview.postMessage({
         command: "play",
