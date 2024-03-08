@@ -46,17 +46,6 @@ app.listen(port, () => {
 });
 
 export function activate(context: ExtensionContext) {
-  console.log(`[OBS Audio Assistant: Show] - startup dictate`);
-
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
-  let disposable = commands.registerCommand('stt.dictate', () => {
-
-  });
-
-  context.subscriptions.push(disposable);
-
   console.log(`[OBS Audio Assistant: Show] - show assistant`);
 
   // Create the show audio assistant command
