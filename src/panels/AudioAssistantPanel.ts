@@ -201,7 +201,7 @@ export class AudioAssistantPanel {
   }
 }
 
-function digits(inp) {
+function digits(inp: string) {
   let out = "";
 
   switch (inp) {
@@ -215,7 +215,7 @@ function digits(inp) {
     case "eight": out = "08"; break;
     case "nine": out = "09"; break;
     default:
-      out = inp;
+      out = ("0" + inp).slice(-2);
   }
 
   return out;
