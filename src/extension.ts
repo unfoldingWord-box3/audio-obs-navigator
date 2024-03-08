@@ -8,42 +8,55 @@ import {
   window,
   workspace,
   WorkspaceEdit,
-} from 'vscode';
-import { COMMAND_MAPPINGS } from './constant/command-mappings';
+} from "vscode";
+import { COMMAND_MAPPINGS } from "./constant/command-mappings";
 import { AudioAssistantPanel } from "./panels/AudioAssistantPanel";
 // @ts-ignore
-import { WebSocketServer } from 'ws';
+import { WebSocketServer } from "ws";
+import axios from "axios";
 // import open from 'open';
 // @ts-ignore
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
 
 const app = express();
 // Todo: make ports part of the extension settings
 const port = 9000;
 const websocketPort = 9001;
-let commandQueue = '';
+let commandQueue = "";
 
-app.use('/', express.static(path.join(__dirname, 'client')));
+app.use("/", express.static(path.join(__dirname, "client")));
 app.listen(port, () => {
   console.log(`[OBS Audio Assistant: Show] Server running at localhost:${port}`);
   window.showInformationMessage(`[OBS Audio Assistant: Show] Server running at localhost:${port}`);
 
   const url = `http://localhost:${port}`;
   console.log(`Opening: ${url}`);
-  //   open(`http://localhost:${port}`);
-  env.openExternal(Uri.parse(url))
-    .then(success => {
+  env
+    .openExternal(Uri.parse(url))
+    .then((success) => {
       if (success) {
         console.log(`Successfully opened ${url}`);
       } else {
         console.error(`Failed to open ${url}`);
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(`Error opening ${url}: ${err.message}`);
     });
 });
+
+async function getVscodeCommandFromUserQuery(userQuery: string) {
+  const url = "http://localhost:5000/";
+  const data = { query: userQuery };
+
+  try {
+    const response = await axios.post(url, data);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+}
 
 export function activate(context: ExtensionContext) {
   console.log(`[OBS Audio Assistant: Show] - startup dictate`);
@@ -51,9 +64,7 @@ export function activate(context: ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
-  let disposable = commands.registerCommand('stt.dictate', () => {
-
-  });
+  let disposable = commands.registerCommand("stt.dictate", () => {});
 
   context.subscriptions.push(disposable);
 
@@ -66,23 +77,25 @@ export function activate(context: ExtensionContext) {
       console.log(`[OBS Audio Assistant: Show] opening connection`);
 
       // The code you place here will be executed every time your command is executed
-      const wss = new WebSocketServer({port: websocketPort});
+      const wss = new WebSocketServer({ port: websocketPort });
       console.log(`[OBS Audio Assistant: Show] openned socket`);
 
-      wss.on('connection', (socket: any) => {
+      wss.on("connection", (socket: any) => {
         // Display a message box to the user
-        console.log('[OBS Audio Assistant] New WebSocket connection');
-        window.showInformationMessage('[OBS Audio Assistant] New WebSocket connection');
+        console.log("[OBS Audio Assistant] New WebSocket connection");
+        window.showInformationMessage("[OBS Audio Assistant] New WebSocket connection");
 
-        socket.on('message', (phrase: string) => {
-          console.log(`[OBS Audio Assistant] New WebSocket message: ${phrase}`);
-          commandQueue += phrase + '\n';
+        socket.on("message", async (phrase: string) => {
+          console.log(`[OBS Audio Assistant] New WebSocket message: ${phrase.toString()}`);
+          commandQueue += phrase + "\n";
 
           // TODO: insert code to handle command in `phrase` here
+          const vscodeCommand = await getVscodeCommandFromUserQuery(phrase.toString());
+          console.log(vscodeCommand);
         });
       });
 
-      /* Workflow 
+      /* Workflow
        *   display webview
        *   invoke STT
        *   wait for "got-stop-recording"
@@ -109,4 +122,3 @@ function myLog(con: string, txt: string) {
   window.showInformationMessage(con);
   console.log(con, txt);
 }
-
