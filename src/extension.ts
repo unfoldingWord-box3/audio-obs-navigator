@@ -76,6 +76,9 @@ export function activate(context: ExtensionContext) {
     () => {
       console.log(`[OBS Audio Assistant: Show] opening connection`);
 
+      const audioPanel = AudioAssistantPanel.render(context.extensionUri);
+      console.log(`[OBS Audio Assistant: Show] registered`);
+
       // The code you place here will be executed every time your command is executed
       const wss = new WebSocketServer({ port: websocketPort });
       console.log(`[OBS Audio Assistant: Show] openned socket`);
@@ -89,26 +92,15 @@ export function activate(context: ExtensionContext) {
           console.log(`[OBS Audio Assistant] New WebSocket message: ${phrase.toString()}`);
           commandQueue += phrase + "\n";
 
-          // TODO: insert code to handle command in `phrase` here
           const vscodeCommand = await getVscodeCommandFromUserQuery(phrase.toString());
           console.log(vscodeCommand);
+          if (vscodeCommand.error) {
+            // don't do it
+          } else {
+            audioPanel?.playObs(vscodeCommand.data);
+          }
         });
       });
-
-      /* Workflow
-       *   display webview
-       *   invoke STT
-       *   wait for "got-stop-recording"
-       *   got raw text
-       *   send raw text to miniParser / LLM
-       *   get back command
-       *   get mp3 file name
-       *   send to player
-       * Grammar
-       *   [ check | play ] [ story 1-50 ] [ frame 1-10 ]
-       */
-      AudioAssistantPanel.render(context.extensionUri);
-      console.log(`[OBS Audio Assistant: Show] registered`);
     }
   );
 
